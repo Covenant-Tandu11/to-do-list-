@@ -1,0 +1,678 @@
+:root{
+    /*BACKGROUNDS*/
+    --bg-app: #9DB7FF;
+    --bg-modal: rgba(0, 0, 0, 0.3);
+    --bg-card: #3E57A7;
+    --body-background: #fff;
+    /*CATEGORY PROGRESS COLOURS*/
+    --progress-personal: #ff4fd8;
+    --progress-work: #4dd2ff;
+    --progress-school: #7bffb1;
+    --progress-health: #ffc46b;
+
+    /* STATUS */
+    --edit: #4D96FF;
+    --delete: #FF4B4B;
+    --success: #4dd2ff;
+
+        /* CATEGORY PROGRESS COLOURS */
+    --progress-personal: #ff4fd8;
+    --progress-work: #4dd2ff;
+    --progress-school: #7bffb1;
+    --progress-health: #ffc46b;
+
+    /* PRIMARY COLOURS */
+    --primary-pink: #FF4FD8;
+
+    /* TEXT COLOURS */
+    --text-primary: #ffff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+
+    /* INPUTS */
+    --input-bg: #3E57A7;
+    --input-text: #ffff;
+    --input-placeholder: #C6D2F6;
+
+    /* SHADOWS */
+    --soft-shadows: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+    font-family: 'roboto', sans-serif;
+}
+
+body{
+    background-color: var(--body-background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.dashboard-screen{
+    width: 100%;
+    max-width: 400px;
+    min-height: 700px;
+    background: var(--bg-app);
+    border-radius: 25px;
+    box-shadow: var(--soft-shadows);
+    overflow: hidden;
+    position: relative;
+} 
+
+.dashboard-header{
+    text-align: left;
+    padding:  25px 20px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-header h1{
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.categories-section{
+    margin-top: 20px;
+}
+
+.categories-section,
+.tasks-section{
+    padding: 20px;
+}
+
+.categories-section h2,
+.tasks-header h2 {
+    font-size: 12px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    margin-bottom: 10px;
+}
+
+.categories-section h2 i,
+.tasks-header h2 i {
+    color: var(--primary-pink);
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 4px 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;  
+}
+
+/*hide scrollbar */
+.categories::-webkit-scrollbar {
+  height: 0px;
+} 
+
+.category-item {
+  flex: 0 0 auto;       
+  width: 184px;        
+  padding: 16px;
+  border-radius: 16px; 
+  background: var(--bg-card); 
+  color: var(--text-primary);
+  scroll-snap-align: start;
+} 
+
+.category-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px; 
+} 
+
+.category-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.category-count {
+  font-size: 14px;
+  color: var(--text-secondary);
+} 
+
+/* progress bar */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.25); 
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.6s ease-in-out;
+}
+
+.category-item.personal .progress-fill { background: var(--progress-personal); }
+.category-item.work .progress-fill { background: var(--progress-work); }
+.category-item.school .progress-fill { background: var(--progress-school); }
+.category-item.health .progress-fill { background: var(--progress-health); }
+
+
+/* percentage text */
+.progress-percent {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+} 
+
+
+/* Category Colors */
+.personal .progress-fill,
+.personal .category-name i { 
+    color: var(--progress-personal); 
+   
+}
+
+.work .progress-fill,
+.work .category-name i { 
+    color: var(--progress-work); 
+}
+
+.school .progress-fill,
+.school .category-name i { 
+    color: var(--progress-school); 
+}
+
+.health .progress-fill,
+.health .category-name i { 
+    color: var(--progress-health); 
+} 
+
+/*Tasks*/
+.task-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+ .task-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+} 
+
+.task-list::-webkit-scrollbar-thumb {
+    background: var(--primary-pink);
+    border-radius: 2px;
+} 
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.task-checkbox {
+    width: 22px;
+    height: 22px;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    appearance: none;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.task-checkbox:checked {
+    background-color: currentColor;
+    border-color: currentColor;
+}
+
+.task-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-text {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.task-category {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    margin-right: 10px;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.task-actions button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.edit-btn {
+    color: var(--edit);
+}
+
+.delete-btn {
+    color: var(--delete);
+} */
+
+/* Empty State */
+.empty-state {
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-state i {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.empty-state h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    font-size: 14px;
+} 
+
+
+/* Floating Add Button */
+.floating-add-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--soft-shadows);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: transform 0.3s, box-shadow 0.3s, rotate 0.3s;
+}
+
+.floating-add-btn:hover {
+    transform: translateX(50%) rotate(90deg);
+    box-shadow: 0 10px 25px rgba(255, 79, 216, 0.4);
+}
+
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-modal);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s; 
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background-color: var(--bg-app);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    box-shadow: var(--soft-shadows);
+    transform: translateY(20px);
+    transition: transform 0.3s; 
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+} 
+
+.modal-header h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-header h2 i {
+    color: var(--primary-pink);
+} 
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    rotate: 90deg;
+} 
+
+/* Modal Form */
+#task-form .form-group {
+    margin-bottom: 20px;
+}
+
+#task-form{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group{
+     margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--input-placeholder);
+    font-size: 18px;
+}
+
+.form-group input,
+.form-group select{
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--input-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--input-text);
+    font-size: 20px;
+    outline: none;
+}
+
+.form-group input::placeholder{
+    color: var(--input-text);
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color: var(--primary-pink);
+}
+
+.form-group select{
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.add-task-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.add-task-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 79, 216, 0.3);
+}
+
+/* =======================
+   RESPONSIVENESS
+======================= */
+
+/* Tablets & Large Phones */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .dashboard-screen {
+        max-width: 500px;
+        min-height: auto;
+        border-radius: 22px;
+    }
+
+    .category-item {
+        width: 160px;
+    }
+
+    .task-list {
+        max-height: 260px;
+    }
+}
+
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .dashboard-screen {
+        max-width: 100%;
+        border-radius: 18px;
+    }
+
+    .dashboard-header {
+        padding: 20px 16px 12px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 22px;
+    }
+
+    /* Categories */
+    .categories {
+        gap: 12px;
+        padding: 6px 0 10px;
+    }
+
+    .category-item {
+        width: 150px;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .category-name span {
+        font-size: 14px;
+    }
+
+    .category-count {
+        font-size: 11px;
+    }
+
+    .progress-percent {
+        font-size: 11px;
+    }
+
+    /* Tasks */
+    .task-list {
+        max-height: 240px;
+    }
+
+    .task-item {
+        padding: 12px;
+    }
+
+    .task-text {
+        font-size: 14px;
+    }
+
+    .task-category {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    /* Floating Button */
+    .floating-add-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+        bottom: 20px;
+    }
+
+    /* Modal */
+    .modal {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .add-task-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+
+/* Very Small Phones */
+@media (max-width: 360px) {
+
+    .dashboard-header h1 {
+        font-size: 18px;
+    }
+
+    .category-item {
+        width: 130px;
+        padding: 12px;
+    }
+
+    .task-text {
+        font-size: 13px;
+    }
+
+    .task-category {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+
+    .floating-add-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+
+/* Landscape Mode */
+@media (max-height: 500px) {
+
+    .dashboard-screen {
+        min-height: 500px;
+    }
+
+    .task-list {
+        max-height: 200px;
+    }
+}
